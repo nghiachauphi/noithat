@@ -9,7 +9,7 @@ class SanPham extends Model
 	protected $table = 'sanpham';
 	protected $keyType = 'string';
 	
-	public function DanhMuc()
+	public function danhmuc()
 	{
 		return $this->belongsTo('App\DanhMuc');
 	}

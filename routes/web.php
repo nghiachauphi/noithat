@@ -25,6 +25,8 @@ Route::post('/contact', [
     'as' => 'contact.store'
 ]);
 
+Route::get('/admin/contact', 'ContactUsFormController@getDanhSach');
+
 // Giỏ hàng
 Route::get('/cart', 'RegisProductsController@list')->name('cart');
 Route::post('/cart', 'BillController@send')->name('send-cart');
@@ -46,25 +48,29 @@ Route::post('/discount/xoa/{id}', 'DiscountCodeController@postXoa');
 
 // Sản phẩm
 Route::get('/sanpham', 'SanPhamController@getDanhSach')->name('sanpham');
-Route::get('/sanpham/them', 'SanPhamController@getThem');
 Route::get('/sanpham/tim', 'SanPhamController@search');
-Route::post('/sanpham/them', 'SanPhamController@postThem');
-Route::get('/sanpham/sua/{id}', 'SanPhamController@getSua');
-Route::post('/sanpham/sua/{id}', 'SanPhamController@postSua');
-Route::get('/sanpham/xoa/{id}', 'SanPhamController@getXoa');
-Route::post('/sanpham/xoa/{id}', 'SanPhamController@postXoa');
+
+Route::get('/admin/sanpham', 'SanPhamController@getDanhSachAdmin');
+Route::get('/admin/sanpham/them', 'SanPhamController@getThem');
+Route::post('/admin/sanpham/them', 'SanPhamController@postThem');
+Route::get('/admin/sanpham/sua/{id}', 'SanPhamController@getSua');
+Route::post('/admin/sanpham/sua/{id}', 'SanPhamController@postSua');
+Route::get('/admin/sanpham/xoa/{id}', 'SanPhamController@getXoa');
+Route::post('/admin/sanpham/xoa/{id}', 'SanPhamController@postXoa');
 
 // danh mục
 
 Route::get('/danhmuc', 'DanhMucController@getDanhSach')->name('danhmuc');
-Route::get('/danhmuc/them', 'DanhMucController@getThem');
-Route::post('/danhmuc/them', 'DanhMucController@postThem');
-Route::get('/danhmuc/sua/{id}', 'DanhMucController@getSua');
-Route::post('/danhmuc/sua/{id}', 'DanhMucController@postSua');
-Route::get('/danhmuc/xoa/{id}', 'DanhMucController@getXoa');
-Route::post('/danhmuc/xoa/{id}', 'DanhMucController@postXoa');
-Route::post('/danhmuc/nhap', 'DanhMucController@postNhap');
-Route::get('/danhmuc/xuat', 'DanhMucController@getXuat');
+
+Route::get('/admin/danhmuc', 'DanhMucController@getDanhSachAdmin');
+Route::get('/admin/danhmuc/them', 'DanhMucController@getThem');
+Route::post('/admin/danhmuc/them', 'DanhMucController@postThem');
+Route::get('/admin/danhmuc/sua/{id}', 'DanhMucController@getSua');
+Route::post('/admin/danhmuc/sua/{id}', 'DanhMucController@postSua');
+Route::get('/admin/danhmuc/xoa/{id}', 'DanhMucController@getXoa');
+Route::post('/admin/danhmuc/xoa/{id}', 'DanhMucController@postXoa');
+Route::post('/admin/danhmuc/nhap', 'DanhMucController@postNhap');
+Route::get('/admin/danhmuc/xuat', 'DanhMucController@getXuat');
 
 //Chi tiet sp
 Route::get('/chitietsp/{id}', 'ChiTietSPController@getDanhSach')->name('chitietsp');
@@ -80,3 +86,7 @@ Route::get('/chitietsp/xuat', 'ChiTietSPController@getXuat');
 //add sanpham
 Route::get('/sanpham/add/{id}', 'RegisProductsController@getThem');
 Route::post('/sanpham/add/{id}', 'RegisProductsController@postThem')->name('add-products');
+
+//----------------------Admin----------------
+Route::get('/admin', 'AdminController@admin')->name('admin');
+Route::get('/admin/tables', 'AdminController@tables');

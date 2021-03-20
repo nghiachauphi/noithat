@@ -47,6 +47,6 @@ class ContactUsFormController extends Controller {
     public function getDanhSach()
     {
         $contacts = Contact::all();
-        return view('contactdanhsach', compact('contacts'));
+        return view('admin.contact.danhsach', compact('contacts'));
     }
 }

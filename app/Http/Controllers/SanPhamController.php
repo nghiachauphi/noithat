@@ -17,12 +17,19 @@ class SanPhamController extends Controller
 		$sanpham = SanPham::all();
 		return view('sanpham.danhsach', compact('sanpham','danhmuc'));
 	}
+
+    public function getDanhSachAdmin()
+    {
+        $danhmuc = DanhMuc::all();
+        $sanpham = SanPham::all();
+        return view('admin.sanpham.danhsach', compact('sanpham','danhmuc'));
+    }
 	
 	// Form thêm
 	public function getThem()
 	{
 		$danhmuc = DanhMuc::all();
-		return view('sanpham.them', compact('danhmuc'));
+		return view('admin.sanpham.them', compact('danhmuc'));
 	}
 
 	public function search(Request $req)
@@ -62,7 +69,7 @@ class SanPhamController extends Controller
 		$sanpham->updated_at  = Carbon::now();
 		$sanpham->save();
 		
-		return redirect('/sanpham');
+		return redirect('/admin/sanpham');
 	}
 	
 	// Form sửa
@@ -71,7 +78,7 @@ class SanPhamController extends Controller
 		$danhmuc = DanhMuc::all();
 		$sanpham = SanPham::find($id);
 		$sp = SanPham::where('id', $id)->latest()->get();
-		return view('sanpham.sua', compact('sanpham','danhmuc','sp'));
+		return view('admin.sanpham.sua', compact('sanpham','danhmuc','sp'));
 		// dd($hangxe);
 	}
 	
@@ -101,14 +108,14 @@ class SanPhamController extends Controller
 		$sanpham->updated_at  = Carbon::now();
 		$sanpham->save();
 		
-		return redirect('/sanpham');
+		return redirect('/admin/sanpham');
 	}
 	
 	// Xác nhận xóa
 	public function getXoa($id)
 	{
 		$sanpham = SanPham::find($id);
-		return view('sanpham.xoa', compact('sanpham'));
+		return view('admin.sanpham.xoa', compact('sanpham'));
 	}
 	
 	// Xử lý xóa
@@ -117,7 +124,7 @@ class SanPhamController extends Controller
 		$sanpham = SanPham::find($id);
 		$sanpham->delete();
 		
-		return redirect('/sanpham');
+		return redirect('/admin/sanpham');
 	}
 
 	// Nhập từ Excel
@@ -125,7 +132,7 @@ class SanPhamController extends Controller
 	{
 		Excel::import(new SanPhamImport, $request->TapTinExcel);
 		
-		return redirect('/sanpham');
+		return redirect('/admin/sanpham');
 	}
 	
 	// Xuất ra Excel

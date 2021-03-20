@@ -19,11 +19,17 @@ class DanhMucController extends Controller
 		$danhmuc = DanhMuc::all();
 		return view('danhmuc.danhsach', compact('danhmuc'));
 	}
+
+    public function getDanhSachAdmin()
+    {
+        $danhmuc = DanhMuc::all();
+        return view('admin.danhmuc.danhsach', compact('danhmuc'));
+    }
 	
 	// Form thêm
 	public function getThem()
 	{
-		return view('danhmuc.them');
+		return view('admin.danhmuc.them');
 	}
 	
 	// Xử lý thêm
@@ -39,14 +45,14 @@ class DanhMucController extends Controller
 		$danhmuc->updated_at  = Carbon::now();
 		$danhmuc->save();
 		
-		return redirect('/danhmuc');
+		return redirect('/admin/danhmuc');
 	}
 	
 	// Form sửa
 	public function getSua($id)
 	{
 		$danhmuc = DanhMuc::find($id);
-		return view('danhmuc.sua', compact('danhmuc'));
+		return view('admin.danhmuc.sua', compact('danhmuc'));
 	}
 	
 	// Xử lý sửa
@@ -61,14 +67,14 @@ class DanhMucController extends Controller
 		$danhmuc->updated_at  = Carbon::now();
 		$danhmuc->save();
 		
-		return redirect('/danhmuc');
+		return redirect('/admin/danhmuc');
 	}
 	
 	// Xác nhận xóa
 	public function getXoa($id)
 	{
 		$danhmuc = DanhMuc::find($id);
-		return view('danhmuc.xoa', compact('danhmuc'));
+		return view('admin.danhmuc.xoa', compact('danhmuc'));
 	}
 	
 	// Xử lý xóa
@@ -77,6 +83,6 @@ class DanhMucController extends Controller
 		$danhmuc = DanhMuc::find($id);
 		$danhmuc->delete();
 		
-		return redirect('/danhmuc');
+		return redirect('/admin/danhmuc');
 	}
 }

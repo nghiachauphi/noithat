@@ -31,7 +31,7 @@ class RegisProductsController extends Controller
 		// })->where('nguoidung_id', $userId)->latest()->get();
 		
 		
-		return view('cart.list',compact('total','discountCodes','carts'));
+		return view('layouts.cart.list',compact('total','discountCodes','carts'));
 	}
 	// Form thêm
 	public function getThem($id_sp)
@@ -41,7 +41,7 @@ class RegisProductsController extends Controller
 		$sanpham = SanPham::where('id', $id_sp)->first();
         $regis_products = RegisProducts::where('sanpham_id', $id_sp)->first();
         
-		return view('sanpham.addproducts', compact('regis_products','sanpham','getND'));
+		return view('layouts.addproducts', compact('regis_products','sanpham','getND'));
 	}
 	
 	// Xử lý thêm
@@ -49,25 +49,25 @@ class RegisProductsController extends Controller
 	{
 		$userId = auth()->user()->id;
         $getND = RegisProducts::where('nguoidung_id', $userId)->latest()->get();
-		$request->validate([
-			'soluong' => 'required',
-			'price' => 'min:0',
-		]);
-		
+
 		$product = SanPham::where('id', '=', $id_sp)->first();
 		if(!$product){
 			//Sản phẩm không tồn tại
 			return redirect('/');
 		}
-		$so_luong = intval($request->input('soluong'));
+        $soluong = intval($request->input('soluongmua'));
 		$regisSP = new RegisProducts();
 		$regisSP->sanpham_id = $id_sp;
-		$regisSP->soluong = $so_luong;
-		$regisSP->price = ($so_luong * $product->giatien);
 		$regisSP->nguoidung_id = auth()->user()->id;
+        $regisSP->trongluong = $request->trongluong;
+        $regisSP->chatlieu = $request->chatlieu;
+        $regisSP->kichthuoc = $request->kichthuoc;
+        $regisSP->soluong = $request->soluong;
+
+        $regisSP->price = ($request->giatien)*$soluong;
 		$regisSP->save();
 		
-		return redirect('/');
+		return redirect('/cart');
 	}
 
 

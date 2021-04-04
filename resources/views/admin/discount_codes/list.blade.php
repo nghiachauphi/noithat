@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.layouts')
 
 @section('content')
 	<div class="card">
@@ -25,7 +25,7 @@
 							<td>{{ $value->expire }}</td>
 							
 							<td>{{ $value->created_at }}</td>
-							<td class="text-center"><a href="{{ url('/discount/xoa/' . $value->id) }}"><i class="fal fa-trash-alt text-danger"></i></a></td>
+							<td class="text-center"><a href="{{ url('/admin/discount/xoa/' . $value->id) }}"><i class="bi bi-trash-fill"></i></a></td>
 						</tr>
 					@endforeach
 				</tbody>

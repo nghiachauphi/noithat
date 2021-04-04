@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\DanhMuc;
+use App\RegisProducts;
 use App\SanPham;
 use Carbon\Carbon;
 use App\ChiTietSP;
@@ -65,6 +66,11 @@ class SanPhamController extends Controller
         }
         $sanpham->hinhanh = $bientam;
 		$sanpham->giatien = $request->giatien;
+		$sanpham->giatien = $request->giatien;
+		$sanpham->trongluong = $request->trongluong;
+		$sanpham->kichthuoc = $request->kichthuoc;
+		$sanpham->chatlieu = $request->chatlieu;
+		$sanpham->soluong = $request->soluong;
 		$sanpham->created_at = Carbon::now();
 		$sanpham->updated_at  = Carbon::now();
 		$sanpham->save();
@@ -92,6 +98,10 @@ class SanPhamController extends Controller
 		$sanpham->tensanpham = $request->tensanpham;
 		$sanpham->mota = $request->mota;
 		$sanpham->giatien = $request->giatien;
+        $sanpham->trongluong = $request->trongluong;
+        $sanpham->kichthuoc = $request->kichthuoc;
+        $sanpham->chatlieu = $request->chatlieu;
+        $sanpham->soluong = $request->soluong;
 
 		if($request->hasFile('hinhanh')){
 
@@ -140,4 +150,14 @@ class SanPhamController extends Controller
 	{
 		return Excel::download(new SanPhamExport, 'ds_sanpham.xlsx');
 	}
+
+    public function chitietsp($id)
+    {
+
+//        $userId = auth()->user()->id;
+//        $getND = RegisProducts::where('nguoidung_id', $userId)->latest()->get();
+        $sanpham = SanPham::where('id', $id)->first();
+        $regis_products = RegisProducts::where('sanpham_id', $id)->first();
+        return view('layouts.chitietsp', compact('regis_products','sanpham'));
+    }
 }

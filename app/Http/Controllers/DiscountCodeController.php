@@ -9,13 +9,13 @@ class DiscountCodeController extends Controller
 {
     public function discountCodeAddForm()
     {
-        return view('discount_codes.add');
+        return view('admin.discount_codes.add');
     }
 
     public function list(Request $request)
     {
         $code = DiscountCode::all();
-        return view('discount_codes.list', compact('code'));
+        return view('admin.discount_codes.list', compact('code'));
     }
 
     public function discountCodeAdd(Request $request)
@@ -33,13 +33,13 @@ class DiscountCodeController extends Controller
             $request->all()
         );
 
-        return back()->with('success', 'Thêm thành công');
+        return redirect('/admin/discount');
     }
 
     public function getXoa($id)
     {
         $code = DiscountCode::find($id);
-        return view('discount_codes.xoa', compact('code'));
+        return view('admin.discount_codes.xoa', compact('code'));
     }
     
     // Xử lý xóa
@@ -48,6 +48,6 @@ class DiscountCodeController extends Controller
         $code = DiscountCode::find($id);
         $code->delete();
         
-        return redirect('/discount');
+        return redirect('/admin/discount');
     }
 }

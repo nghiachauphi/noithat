@@ -59,9 +59,8 @@
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a href="checkout.blade.php"><i class="fa fa-crosshairs"></i> Checkout</a></li>
-                            <li><a href="cart.blade.php"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="<?php echo e(url('/info')); ?>"><i class="fa fa-crosshairs"></i> Thông tin</a></li>
+                            <li><a href="<?php echo e(url('/cart')); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             <?php if(auth()->guard()->check()): ?>
                           <?php if(auth()->user()->level == 0): ?>
                                     <ul class="navbar-nav ml-auto">
@@ -117,7 +116,7 @@
                                 <ul role="menu" class="sub-menu">
                                     <li><a href="shop.blade.php">Products</a></li>
                                     <li><a href="product-details.blade.php">Product Details</a></li>
-                                    <li><a href="checkout.blade.php">Checkout</a></li>
+                                    <li><a href="checkout.blade.php">Thông tin</a></li>
                                     <li><a href="cart.blade.php">Cart</a></li>
                                     <li><a href="login.blade.php">Login</a></li>
                                 </ul>
@@ -128,15 +127,19 @@
                                     <li><a href="blog-single.blade.php">Blog Single</a></li>
                                 </ul>
                             </li>
-                            <li><a href="404.html">404</a></li>
+                            <li><a href="info.blade.php">404</a></li>
                             <li><a href="contact-us.blade.php">Contact</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
-                    </div>
+                        <form action="<?php echo e(url('/search')); ?>" method="get" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <input type="text" name="searchString" />
+                                <input class="btn-info" type="submit" value="tìm kiếm" />
+                            </div>
+                        </form>
+
                 </div>
             </div>
         </div>

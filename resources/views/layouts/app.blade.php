@@ -23,6 +23,13 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('public/images/ico/apple-touch-icon-114-precomposed.png')}}">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('public/images/ico/apple-touch-icon-72-precomposed.png')}}">
 	<link rel="apple-touch-icon-precomposed" href="{{asset('public/images/ico/apple-touch-icon-57-precomposed.png')}}">
+	<style>
+		.all-center{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
 </head><!--/head-->
 
 <body>

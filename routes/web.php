@@ -39,11 +39,11 @@ Route::post('/bill/xoa/{id}', 'BillController@postXoa');
 Route::get('/bill/duyet/{id}', 'BillController@duyet')->name('duyet');
 
 // Mã giảm giá
-Route::get('/discount', 'DiscountCodeController@list')->name('list');
-Route::get('/discount/them', 'DiscountCodeController@discountCodeAddForm')->name('discount-code-add-form');
-Route::post('/discount/them', 'DiscountCodeController@discountCodeAdd')->name('discount-code-add');
-Route::get('/discount/xoa/{id}', 'DiscountCodeController@getXoa');
-Route::post('/discount/xoa/{id}', 'DiscountCodeController@postXoa');
+Route::get('/admin/discount', 'DiscountCodeController@list')->name('list');
+Route::get('/admin/discount/them', 'DiscountCodeController@discountCodeAddForm')->name('discount-code-add-form');
+Route::post('/admin/discount/them', 'DiscountCodeController@discountCodeAdd')->name('discount-code-add');
+Route::get('/admin/discount/xoa/{id}', 'DiscountCodeController@getXoa');
+Route::post('/admin/discount/xoa/{id}', 'DiscountCodeController@postXoa');
 
 
 // Sản phẩm
@@ -73,7 +73,7 @@ Route::post('/admin/danhmuc/nhap', 'DanhMucController@postNhap');
 Route::get('/admin/danhmuc/xuat', 'DanhMucController@getXuat');
 
 //Chi tiet sp
-Route::get('/chitietsp/{id}', 'ChiTietSPController@getDanhSach')->name('chitietsp');
+Route::get('/chitietsp/{id}', 'SanPhamController@chitietsp')->name('chitietsp');
 Route::get('/chitietsp/them/{id}', 'ChiTietSPController@getThem');
 Route::post('/chitietsp/them/{id}', 'ChiTietSPController@postThem')->name('post.them');
 Route::get('/chitietsp/sua/{id}', 'ChiTietSPController@getSua');
@@ -84,8 +84,10 @@ Route::post('/chitietsp/nhap', 'ChiTietSPController@postNhap');
 Route::get('/chitietsp/xuat', 'ChiTietSPController@getXuat');
 
 //add sanpham
-Route::get('/sanpham/add/{id}', 'RegisProductsController@getThem');
 Route::post('/sanpham/add/{id}', 'RegisProductsController@postThem')->name('add-products');
+
+//search
+Route::get('/search', 'SanPhamController@search');
 
 //----------------------Admin----------------
 Route::get('/admin', 'AdminController@admin')->name('admin');

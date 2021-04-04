@@ -69,12 +69,18 @@
         <li class="nav-item">
             <a class="nav-link" href="{{url('/admin/sanpham')}}">
                 <i class="bi bi-cart-check-fill"></i>
-                <span>Danh Mục</span></a>
+                <span>Sản Phẩm</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{url('/admin/contact')}}">
                 <i class="bi bi-chat-square-text-fill"></i>
-                <span>Danh Mục</span></a>
+                <span>Liên hệ</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('/admin/discount')}}">
+                <i class="bi bi-chat-square-text-fill"></i>
+                <span>Giảm giá</span></a>
         </li>
         <!-- Divider -->
         <hr class="sidebar-divider">

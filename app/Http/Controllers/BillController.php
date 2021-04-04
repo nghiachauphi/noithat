@@ -41,17 +41,21 @@ class BillController extends Controller
         $order = Order::create([
             'nguoidung_id' => auth()->user()->id
         ]);
+
        	foreach($carts as $item) {
 			Bill::create([
 	            'nguoidung_id' => auth()->user()->id,
 	            'sanpham_id' => $item->sanpham_id,
 	            'discount' => $code,
+                'chatlieu' => $item->chatlieu,
+                'trongluong' => $item->trongluong,
+                'kichthuoc' => $item->kichthuoc,
 	            'price' => $item->price,
 	            'diachi' => $request->diachi,
 	            'sdt' => $request->sdt,
 	            'thanhtien' => $thanhtien,
 	            'soluong' => $item->soluong,
-	            'order_id' => $order->id
+	            'order_id' => $order->id,
 	        ]);
 	  	}
 	  		// dd($carts->price);

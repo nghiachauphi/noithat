@@ -49,6 +49,26 @@
 						<span class="invalid-feedback" role="alert">{{ $message }}</span>
 					@enderror
 				</div>
+
+				<div class="form-group">
+					<label for="giatien">Trọng lượng</label>
+					<input type="text" class="form-control" id="trongluong" name="trongluong" />
+				</div>
+
+				<div class="form-group">
+					<label for="giatien">Kích thước</label>
+					<input type="text" class="form-control" id="kichthuoc" name="kichthuoc" />
+				</div>
+
+				<div class="form-group">
+					<label for="giatien">Chất liệu</label>
+					<input type="text" class="form-control" id="chatlieu" name="chatlieu" />
+				</div>
+
+				<div class="form-group">
+					<label for="giatien">Số lượng</label>
+					<input type="number" class="form-control" id="soluong" name="soluong" />
+				</div>
 				
 				<button type="submit" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i> Thêm Danh Mục Mới</button>
 			</form>

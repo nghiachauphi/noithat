@@ -22,6 +22,10 @@ class CreateRegisProductsTable extends Migration
             $table->integer('status')->default(0)->comment('0=chưa duyệt; 1=duyệt; 2=hủy')->nullable();
             $table->foreign('nguoidung_id')->references('id')->on('nguoidung');
             $table->foreign('sanpham_id')->references('id')->on('sanpham');
+
+            $table->string('chatlieu')->nullable();
+            $table->string('kichthuoc')->nullable();
+            $table->string('trongluong')->nullable();
             $table->timestamps();
         });
     }

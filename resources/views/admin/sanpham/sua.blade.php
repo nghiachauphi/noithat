@@ -62,6 +62,26 @@
 						<span class="invalid-feedback" role="alert">{{ $message }}</span>
 					@enderror
 				</div>
+
+				<div class="form-group">
+					<label for="giatien">Trọng lượng</label>
+					<input type="text" class="form-control" id="trongluong" name="trongluong" value="{{$sanpham->trongluong}}"/>
+				</div>
+
+				<div class="form-group">
+					<label for="giatien">Kích thước</label>
+					<input type="text" class="form-control" id="kichthuoc" name="kichthuoc" value="{{$sanpham->kichthuoc}}"/>
+				</div>
+
+				<div class="form-group">
+					<label for="giatien">Chất liệu</label>
+					<input type="text" class="form-control" id="chatlieu" name="chatlieu" value="{{$sanpham->chatlieu}}"/>
+				</div>
+
+				<div class="form-group">
+					<label for="giatien">Số lượng</label>
+					<input type="number" class="form-control" id="soluong" name="soluong" value="{{$sanpham->soluong}}"/>
+				</div>
 				
 				<button type="submit" class="btn btn-primary"><i class="bi bi-save-fill"></i> Thêm vào CSDL</button>
 			</form>

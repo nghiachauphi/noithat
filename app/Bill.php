@@ -8,7 +8,7 @@ class Bill extends Model
 {
     protected $table = 'bill';
     protected $keyType = 'string';
-    protected $fillable = ['nguoidung_id', 'sanpham_id', 'status', 'soluong','discount','thanhtien','order_id','diachi','sdt','price'];
+    protected $fillable = ['nguoidung_id', 'sanpham_id', 'status', 'soluong','discount','thanhtien','order_id','diachi','sdt','price','trongluong','kichthuoc','chatlieu'];
    
 	public function nguoidung()
     {

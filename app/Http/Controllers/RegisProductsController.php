@@ -23,12 +23,6 @@ class RegisProductsController extends Controller
 		$userId = auth()->user()->id;
         $total = RegisProducts::where('nguoidung_id', $userId)->sum('price');
         $carts = RegisProducts::where('nguoidung_id', $userId)->latest()->get();
-        //Gom 2 table db
-		// $carts = RegisProducts::selectRaw('regis_products.*, sanpham.tensanpham')
-		// ->leftJoin('sanpham', function($join) {
-		//     $join->on('regis_products.sanpham_id', '=', 'sanpham.id');
-
-		// })->where('nguoidung_id', $userId)->latest()->get();
 		
 		
 		return view('layouts.cart.list',compact('total','discountCodes','carts'));
@@ -62,7 +56,7 @@ class RegisProductsController extends Controller
         $regisSP->trongluong = $request->trongluong;
         $regisSP->chatlieu = $request->chatlieu;
         $regisSP->kichthuoc = $request->kichthuoc;
-        $regisSP->soluong = $request->soluong;
+        $regisSP->soluong = $request->soluongmua;
 
         $regisSP->price = ($request->giatien)*$soluong;
 		$regisSP->save();

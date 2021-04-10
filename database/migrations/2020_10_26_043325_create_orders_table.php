@@ -16,6 +16,13 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('nguoidung_id');
+            $table->float('tongtien',20,2);
+            $table->string('hovaten');
+            $table->string('diachi');
+            $table->string('email');
+            $table->string('dienthoai');
+            $table->string('ghichu')->nullable();
+            $table->tinyInteger('status')->default(0);
             $table->foreign('nguoidung_id')->references('id')->on('nguoidung');
             $table->timestamps();
         });

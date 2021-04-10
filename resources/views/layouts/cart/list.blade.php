@@ -19,7 +19,7 @@
 						<th class="w-5">Giá tiền</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody >
 					@foreach($carts as $value)
 						<tr>
 							<td>{{ $loop->iteration }}</td>
@@ -34,47 +34,72 @@
 							<td>{{ number_format($value->price) }}</td>
 						</tr>
 					@endforeach
-						<tr>
-                            <td class="font-weight-bold" colspan="3">Mã giảm giá (nếu có)</td>
-                            <td>
-                                @foreach($discountCodes as $code)
-                                    <label for="">
-                                        <input name="code" onclick="pick({{$code->discount}})" type="radio" value="{{$code->discount}}">
-                                        {{$code->name}}
-                                    </label>
-                                    <br>
-                                @endforeach
-                            </td>
-                        </tr>
-						<tr>
-							<td class="font-weight-bold" colspan="3">
-							<label>Tổng tiền</label>
-	                        </td>
-	                        <td class="font-weight-bold" id="last-price">
-	                        	{{number_format($total)}}
-	                        </td>
-						</tr>
-						<tr>
-                            <td>
-                                <label class="font-weight-bold">Địa chỉ nhận hàng</label>
-                            </td>
-                            <td colspan="3">
-                                <div class="form-group">
-                                    <input type="text" required class="form-control @error('diachi') is-invalid @enderror" id="diachi" name="diachi"/>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="font-weight-bold">Số điện thoại liên hệ</label>
-                            </td>
-                            <td colspan="3">
-                                <div class="form-group">
-                                    <input type="text" required class="form-control @error('sdt') is-invalid @enderror" id="sdt" name="sdt"/>
-                                </div>
-                            </td>
-                        </tr>
 				</tbody>
+				<table class="table table-bordered table-sm">
+					<tbody>
+					<tr>
+						<td class="font-weight-bold">Mã giảm giá (nếu có)</td>
+						<td>
+							@foreach($discountCodes as $code)
+								<label for="">
+									<input name="code" onclick="pick({{$code->discount}})" type="radio" value="{{$code->discount}}">
+									{{$code->name}}
+								</label>
+								<br>
+							@endforeach
+						</td>
+					</tr>
+					<tr>
+						<td class="font-weight-bold">
+							<label>Tổng tiền</label>
+						</td>
+						<td class="font-weight-bold" id="last-price">
+							{{number_format($total)}}
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="font-weight-bold">Họ và tên</label>
+						</td>
+						<td colspan="3">
+							<input type="text" required class="form-control" id="hovaten" name="hovaten"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="font-weight-bold">Địa chỉ nhận hàng</label>
+						</td>
+						<td colspan="3">
+							<input type="text" required class="form-control" id="diachi" name="diachi"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="font-weight-bold">Email</label>
+						</td>
+						<td colspan="3">
+							<input type="text" required class="form-control" id="email" name="email"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="font-weight-bold">Số điện thoại liên hệ</label>
+						</td>
+						<td colspan="3">
+							<input type="text" required class="form-control" id="dienthoai" name="dienthoai"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label class="font-weight-bold">Ghi chú giao hàng</label>
+						</td>
+						<td colspan="3">
+								<textarea id="w3review" name="ghichu" rows="4" cols="50">
+								</textarea>
+						</td>
+					</tr>
+					</tbody>
+				</table>
 			</table>
 				<center>
 					<button type="submit" class="btn btn-primary">Gửi đơn hàng</button>

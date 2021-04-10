@@ -18,13 +18,10 @@ class CreateBillTable extends Migration
             $table->unsignedBigInteger('nguoidung_id')->nullable();
             $table->unsignedBigInteger('sanpham_id');
             $table->float('price', 20, 2);
-            $table->float('thanhtien', 20, 2);
             $table->integer('soluong')->nullable();
             $table->integer('status')->default(0)->comment('0=đang giao; 1=đã giao;')->nullable();
             $table->integer('order_id')->nullable();
             $table->float('discount', 10, 2)->nullable();
-            $table->string('diachi')->nullable();
-            $table->string('sdt')->nullable();
             $table->string('trongluong')->nullable();
             $table->string('chatlieu')->nullable();
             $table->string('kichthuoc')->nullable();

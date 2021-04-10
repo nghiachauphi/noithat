@@ -38,8 +38,22 @@ class BillController extends Controller
        	else{
        		$thanhtien = $total - $total * ($code/100);
        	}
+
+        $this->validate($request, [
+            'hovaten' => 'required',
+            'email' => 'required|email',
+            'dienthoai' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            'diachi'=>'required',
+        ]);
+//       	dd($thanhtien);
         $order = Order::create([
-            'nguoidung_id' => auth()->user()->id
+            'nguoidung_id' => auth()->user()->id,
+            'hovaten' => $request->hovaten,
+            'diachi' => $request->diachi,
+            'email' => $request->email,
+            'dienthoai' => $request->dienthoai,
+            'ghichu' => $request->ghichu,
+            'tongtien' => $thanhtien,
         ]);
 
        	foreach($carts as $item) {
@@ -51,9 +65,6 @@ class BillController extends Controller
                 'trongluong' => $item->trongluong,
                 'kichthuoc' => $item->kichthuoc,
 	            'price' => $item->price,
-	            'diachi' => $request->diachi,
-	            'sdt' => $request->sdt,
-	            'thanhtien' => $thanhtien,
 	            'soluong' => $item->soluong,
 	            'order_id' => $order->id,
 	        ]);

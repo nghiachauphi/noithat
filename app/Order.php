@@ -8,7 +8,7 @@ class Order extends Model
 {
     protected $table = 'orders';
     protected $keyType = 'string';
-    protected $fillable = ['nguoidung_id'];
+    protected $fillable = ['nguoidung_id','hovaten','diachi','email','dienthoai','ghichu','tongtien'];
    
 	public function nguoidung()
     {

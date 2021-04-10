@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="index.blade.php"><img src="images/home/logo.png" alt="" /></a>
+                        <a href="/"><img src="images/home/logo.png" alt="" /></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">
@@ -128,7 +128,7 @@
                                 </ul>
                             </li>
                             <li><a href="info.blade.php">404</a></li>
-                            <li><a href="contact-us.blade.php">Contact</a></li>
+                            <li><a href="{{url('/contact')}}">Contact</a></li>
                         </ul>
                     </div>
                 </div>

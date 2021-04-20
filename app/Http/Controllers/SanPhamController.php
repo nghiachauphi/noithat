@@ -165,4 +165,9 @@ class SanPhamController extends Controller
         $regis_products = RegisProducts::where('sanpham_id', $id)->first();
         return view('layouts.chitietsp', compact('regis_products','sanpham'));
     }
+
+    public function danhmuc_sanpham(){
+        $danhmuc = DanhMuc::all();
+        $cateId = $paginate = NULL;
+    }
 }

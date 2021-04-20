@@ -33,63 +33,45 @@
                         <a href="/"><img src="images/home/logo.png" alt="" /></a>
                     </div>
                     <div class="btn-group pull-right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                USA
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Canada</a></li>
-                                <li><a href="#">UK</a></li>
-                            </ul>
-                        </div>
 
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                DOLLAR
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Canadian Dollar</a></li>
-                                <li><a href="#">Pound</a></li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="{{url('/info')}}"><i class="fa fa-crosshairs"></i> Thông tin</a></li>
-                            <li><a href="{{url('/cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             @auth()
-                          @if(auth()->user()->level == 0)
-                                    <ul class="navbar-nav ml-auto">
-
-                                        <li class="nav-item">
-{{--                                            <img src="{{ asset('public/images/icon/cart.svg') }}" width="60" height="30" alt="cart" />--}}
-{{--                                            <a id="cart-text" class="nav-link" href="{{route('cart')}}">Giỏ hàng</a>--}}
+                                @if(auth()->user())
+                                    @guest
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><i class="fal fa-sign-in-alt"></i> Đăng nhập</a></li>
+                                        @if (Route::has('register'))
+                                            <li class="nav-item"><a class="nav-link" href="{{ route('register') }}"><i class="fal fa-user-plus"></i> Đăng ký</a></li>
+                                        @endif
+                                    @else
+                                        <li class="nav-item dropdown">
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fa fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span></a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <ul>
+                                                    <li>
+                                                        <a class="dropdown-item" href="{{ url('/info') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fal fa-sign-out"></i> Thông tin tài khoản</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fal fa-sign-out"></i> Đăng xuất</a>
+                                                    </li>
+                                                </ul>
+                                                <form id="logout-form" action="{{ url('/info') }}" method="post" style="display: none;">@csrf</form>
+                                            </div>
                                         </li>
-                                        @guest
-                                            <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><i class="fal fa-sign-in-alt"></i> Đăng nhập</a></li>
-                                            @if (Route::has('register'))
-                                                <li class="nav-item"><a class="nav-link" href="{{ route('register') }}"><i class="fal fa-user-plus"></i> Đăng ký</a></li>
-                                            @endif
-                                        @else
-                                            <li class="nav-item dropdown">
-                                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fa fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span></a>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fal fa-sign-out"></i> Đăng xuất</a>
-                                                    <form id="logout-form" action="{{ route('logout') }}" method="post" style="display: none;">@csrf</form>
-                                                </div>
-                                            </li>
-                                        @endguest
-                                    </ul>
+                                    @endguest
+
                                 @endauth
 
-                            @else
+                                @else
                                     <li><a href="{{route('login')}}"><i class="fa fa-lock"></i> Login</a></li>
 
-                            @endif
+                                @endif
+
+                            <li class="nav-item"><a href="{{url('/cart')}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+
                         </ul>
                     </div>
                 </div>

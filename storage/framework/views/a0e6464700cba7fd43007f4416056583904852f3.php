@@ -33,63 +33,45 @@
                         <a href="/"><img src="images/home/logo.png" alt="" /></a>
                     </div>
                     <div class="btn-group pull-right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                USA
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Canada</a></li>
-                                <li><a href="#">UK</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-                                DOLLAR
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Canadian Dollar</a></li>
-                                <li><a href="#">Pound</a></li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="shop-menu pull-right">
                         <ul class="nav navbar-nav">
-                            <li><a href="<?php echo e(url('/info')); ?>"><i class="fa fa-crosshairs"></i> Thông tin</a></li>
-                            <li><a href="<?php echo e(url('/cart')); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             <?php if(auth()->guard()->check()): ?>
-                          <?php if(auth()->user()->level == 0): ?>
-                                    <ul class="navbar-nav ml-auto">
-
-                                        <li class="nav-item">
-
-
-                                        </li>
-                                        <?php if(auth()->guard()->guest()): ?>
-                                            <li class="nav-item"><a class="nav-link" href="<?php echo e(route('login')); ?>"><i class="fal fa-sign-in-alt"></i> Đăng nhập</a></li>
-                                            <?php if(Route::has('register')): ?>
-                                                <li class="nav-item"><a class="nav-link" href="<?php echo e(route('register')); ?>"><i class="fal fa-user-plus"></i> Đăng ký</a></li>
-                                            <?php endif; ?>
-                                        <?php else: ?>
-                                            <li class="nav-item dropdown">
-                                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fa fa-user"></i> <?php echo e(Auth::user()->name); ?> <span class="caret"></span></a>
-                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                                    <a class="dropdown-item" href="<?php echo e(route('logout')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fal fa-sign-out"></i> Đăng xuất</a>
-                                                    <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="post" style="display: none;"><?php echo csrf_field(); ?></form>
-                                                </div>
-                                            </li>
+                                <?php if(auth()->user()): ?>
+                                    <?php if(auth()->guard()->guest()): ?>
+                                        <li class="nav-item"><a class="nav-link" href="<?php echo e(route('login')); ?>"><i class="fal fa-sign-in-alt"></i> Đăng nhập</a></li>
+                                        <?php if(Route::has('register')): ?>
+                                            <li class="nav-item"><a class="nav-link" href="<?php echo e(route('register')); ?>"><i class="fal fa-user-plus"></i> Đăng ký</a></li>
                                         <?php endif; ?>
-                                    </ul>
+                                    <?php else: ?>
+                                        <li class="nav-item dropdown">
+                                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fa fa-user"></i> <?php echo e(Auth::user()->name); ?> <span class="caret"></span></a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                                <ul>
+                                                    <li>
+                                                        <a class="dropdown-item" href="<?php echo e(url('/info')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fal fa-sign-out"></i> Thông tin tài khoản</a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="<?php echo e(url('/logout')); ?>"><i class="fal fa-sign-out"></i> Đăng xuất</a>
+                                                    </li>
+                                                </ul>
+                                                <form id="logout-form" action="<?php echo e(url('/info')); ?>" method="post" style="display: none;"><?php echo csrf_field(); ?></form>
+                                            </div>
+                                        </li>
+                                    <?php endif; ?>
+
                                 <?php endif; ?>
 
-                            <?php else: ?>
+                                <?php else: ?>
                                     <li><a href="<?php echo e(route('login')); ?>"><i class="fa fa-lock"></i> Login</a></li>
 
-                            <?php endif; ?>
+                                <?php endif; ?>
+
+                            <li class="nav-item"><a href="<?php echo e(url('/cart')); ?>"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+
                         </ul>
                     </div>
                 </div>

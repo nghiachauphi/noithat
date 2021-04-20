@@ -25,20 +25,8 @@ class KhachHangController extends Controller
     public function getDanhSach()
     {
         $nguoidung = NguoiDung::all();
-//       foreach ($nguoidung as $value){
-//           $order = Order::where('nguoidung_id', $value->id)->get();
-//          foreach ($order as $item){
-//              $sp = SanPham::where('id',$item->sanpham_id)->get();
-//              foreach ($sp as $a){
-//                  dd($a->tensanpham);
-//              }
-//
-//          }
-//       }
-
-//        dd($item->sanpham_id);
 
 
-        return view('admin.khachhang.danhsach', compact('nguoidung','order'));
+        return view('admin.khachhang.danhsach', compact('nguoidung'));
     }
 }

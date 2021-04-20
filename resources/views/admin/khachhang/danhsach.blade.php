@@ -18,6 +18,11 @@
 				</thead>
 				<tbody>
 				@foreach( $nguoidung as $value)
+					@php
+					$order = App\Order::where('nguoidung_id','=', $value->id)->get();
+
+					@endphp
+
 					<tr>
 						<td>{{ $loop->iteration }}</td>
 						<td>
@@ -42,11 +47,9 @@
 							<table class="table table-bordered table-sm">
 								<thead style="background-color: #1D6ADD">
 								<tr>
-									<th>STT</th>
-									<th>Thông tin khách hàng</th>
-									<th>Trạng thái</th>
-									<th>Xác nhận</th>
-									<th>Xóa đơn</th>
+									<th class="text-table">STT</th>
+									<th class="text-table">Thông tin khách hàng</th>
+									<th class="text-table">Thông tin đơn hàng</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -77,7 +80,6 @@
 											<table class="table table-striped table-hover">
 												<thead style="background-color: #67E7F8">
 												<tr>
-													<th>STT</th>
 													<th>Tên sản phẩm</th>
 													<th>Hình ảnh</th>
 													<th>Giá</th>
@@ -90,7 +92,6 @@
 												<tbody>
 												@foreach($value->bill as $item)
 													<tr>
-														<td>{{ $loop->iteration }}</td>
 
 														<td>
 															{{$item->sanpham->tensanpham}}
@@ -119,25 +120,8 @@
 												</tbody>
 											</table>
 										</td>
-										<td>
-											@if($value->status == 0)
-												Đang giao
-											@elseif($value->status == 1)
-												Đã giao hàng
-											@elseif($value->status == 2)
-												Đã hủy đơn
-											@endif
-										</td>
 
 
-
-										<td class="text-center">
-											<form action="{{URL('info/'. $value->id)}}" method="post">
-												@csrf
-												<input type="hidden" name="cancel" value="Hủy đơn" class="btn btn-danger">
-												<input type="submit" value="Hủy đơn" class="btn btn-danger">
-											</form>
-										</td>
 									</tr>
 
 								@endforeach

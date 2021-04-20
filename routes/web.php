@@ -11,7 +11,11 @@
 |
 */
 Auth::routes(['register' => true, 'reset' => true]);
+Route::get('logout', function(){
+    auth()->logout();
 
+    return back();
+});
 //Route::get('/', 'HomeController@getHome')->name('home');
 Route::get('/', 'HomeController@getWelcome')->name('home');
 
@@ -57,6 +61,19 @@ Route::get('/admin/sanpham/sua/{id}', 'SanPhamController@getSua');
 Route::post('/admin/sanpham/sua/{id}', 'SanPhamController@postSua');
 Route::get('/admin/sanpham/xoa/{id}', 'SanPhamController@getXoa');
 Route::post('/admin/sanpham/xoa/{id}', 'SanPhamController@postXoa');
+Route::post('/admin/sanpham/nhap', 'SanPhamController@postNhap');
+Route::get('/admin/sanpham/xuat', 'SanPhamController@getXuat');
+
+// admin khach hang
+Route::get('/admin/khachhang', 'KhachHangController@getDanhSach')->name('khachhang');
+//Route::get('/admin/sanpham/them', 'KhachHangController@getThem');
+//Route::post('/admin/sanpham/them', 'KhachHangController@postThem');
+//Route::get('/admin/sanpham/sua/{id}', 'KhachHangController@getSua');
+//Route::post('/admin/sanpham/sua/{id}', 'KhachHangController@postSua');
+//Route::get('/admin/sanpham/xoa/{id}', 'KhachHangController@getXoa');
+//Route::post('/admin/sanpham/xoa/{id}', 'KhachHangController@postXoa');
+//Route::post('/admin/sanpham/nhap', 'KhachHangController@postNhap');
+//Route::get('/admin/sanpham/xuat', 'KhachHangController@getXuat');
 
 // danh mục
 
@@ -80,8 +97,8 @@ Route::get('/chitietsp/sua/{id}', 'ChiTietSPController@getSua');
 Route::post('/chitietsp/sua/{id}', 'ChiTietSPController@postSua');
 Route::get('/chitietsp/xoa/{id}', 'ChiTietSPController@getXoa');
 Route::post('/chitietsp/xoa/{id}', 'ChiTietSPController@postXoa');
-Route::post('/chitietsp/nhap', 'ChiTietSPController@postNhap');
-Route::get('/chitietsp/xuat', 'ChiTietSPController@getXuat');
+Route::post('/admin/chitietsp/nhap', 'ChiTietSPController@postNhap');
+Route::get('/admin/chitietsp/xuat', 'ChiTietSPController@getXuat');
 
 //add sanpham
 Route::post('/sanpham/add/{id}', 'RegisProductsController@postThem')->name('add-products');

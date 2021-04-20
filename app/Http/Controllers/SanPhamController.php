@@ -6,7 +6,11 @@ use App\RegisProducts;
 use App\SanPham;
 use Carbon\Carbon;
 use App\ChiTietSP;
+use Excel;
 use Illuminate\Http\Request;
+use App\Imports\SanPhamImport;
+use App\Exports\SanPhamExport;
+
 
 class SanPhamController extends Controller
 {
@@ -148,7 +152,8 @@ class SanPhamController extends Controller
 	// Xuất ra Excel
 	public function getXuat()
 	{
-		return Excel::download(new SanPhamExport, 'ds_sanpham.xlsx');
+//        xlsx
+		return Excel::download(new SanPhamExport, 'sanpham'.date('Y-m-d-h-i-s').'.xlsx');
 	}
 
     public function chitietsp($id)

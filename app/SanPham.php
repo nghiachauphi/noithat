@@ -8,6 +8,17 @@ class SanPham extends Model
 {
 	protected $table = 'sanpham';
 	protected $keyType = 'string';
+	protected $fillable = [
+	  'danhmuc_id',
+	  'tensanpham',
+	  'mota',
+	  'hinhanh',
+	  'giatien',
+	  'trongluong',
+	  'kichthuoc',
+	  'chatlieu',
+	  'soluong',
+    ];
 	
 	public function danhmuc()
 	{

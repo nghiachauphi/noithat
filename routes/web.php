@@ -108,11 +108,13 @@ Route::get('/search', 'SanPhamController@search');
 
 //info
 Route::get('/info','UserController@info');
-Route::post('/info/{id}','UserController@upImage');
+Route::get('/sanpham-damua','UserController@sanpham_damua');
+//Route::post('/info/{id}','UserController@upImage');
 Route::post('/info/{id}','UserController@editInfo');
-//Route::post('/info/{id}','UserController@deleteInfo');
-Route::post('/info/{id}','UserController@status_order')->name('accept-cart');
-Route::post('/info/{id}','UserController@cancelOrder')->name('cancel-order');
+Route::get('/info/delete-info/{id}','UserController@getDeleteInfo');
+Route::post('/info/delete-info/{id}','UserController@deleteInfo');
+Route::post('/sanpham-damua/{id}','UserController@status_order')->name('accept-cart');
+Route::post('/sanpham-damua/{id}','UserController@cancelOrder')->name('cancel-order');
 //----------------------Admin----------------
 Route::get('/admin', 'AdminController@admin')->name('admin');
 Route::get('/admin/tables', 'AdminController@tables');

@@ -52,7 +52,7 @@
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                                 <ul>
                                                     <li>
-                                                        <a class="dropdown-item" href="{{ url('/info') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fal fa-sign-out"></i> Thông tin tài khoản</a>
+                                                        <a class="dropdown-item" href="{{ url('/info') }}"><i class="fal fa-sign-out"></i> Thông tin tài khoản</a>
                                                     </li>
                                                     <li>
                                                         <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fal fa-sign-out"></i> Đăng xuất</a>

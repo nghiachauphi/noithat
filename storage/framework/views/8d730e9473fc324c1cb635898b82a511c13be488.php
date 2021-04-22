@@ -23,7 +23,7 @@
 	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo e(asset('public/images/ico/apple-touch-icon-114-precomposed.png')); ?>">
 	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo e(asset('public/images/ico/apple-touch-icon-72-precomposed.png')); ?>">
 	<link rel="apple-touch-icon-precomposed" href="<?php echo e(asset('public/images/ico/apple-touch-icon-57-precomposed.png')); ?>">
-
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 	<style>
 		.all-center{
 			display: flex;

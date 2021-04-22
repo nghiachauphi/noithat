@@ -17,15 +17,36 @@ class UserController extends Controller
     public function info(){
         $userID = Auth()->user()->id;
         $user = Auth()->user();
+
+        return view('layouts.info', compact('user'));
+    }
+
+    public function sanpham_damua(){
+        $userID = Auth()->user()->id;
+        $user = Auth()->user();
         $order = Order::where('nguoidung_id','=', $userID)->get();
 //        dd($order);
 //        $order_id = Order::where('id')->get();
         $bill = [];
-        return view('layouts.info', compact('bill','user', 'order'));
+        return view('layouts.sanpham-damua', compact('bill','user', 'order'));
     }
+
 
     public function editInfo(Request $request, $id){
         $info = NguoiDung::find($id);
+        if($request->hasFile('avatar')){
+
+            $fImage = $request->file('avatar');
+            $bientam = time().'_'.$fImage->getClientOriginalName();
+            $destinationPath = public_path('/upload');
+            $fImage->move($destinationPath,$bientam);
+            $info->hinhanh = $bientam;
+        }
+        else{
+            $info->hinhanh = $request->hinhcu;
+        }
+        $info->save();
+
         $info->name = $request->name;
         $info->phone = $request->phone;
         $info->email = $request->email;
@@ -34,29 +55,17 @@ class UserController extends Controller
         return redirect('/info');
     }
 
+    public function getDeleteInfo($id){
+        $user = NguoiDung::find($id);
+        return view('layouts.delete-info',compact('user'));
+    }
+
     public function deleteInfo(Request $request, $id){
         $user = NguoiDung::find($id);
         $user->delete();
         return redirect('/');
     }
 
-    public function upImage(Request $request, $id){
-        $user = NguoiDung::find($id);
-        if($request->hasFile('avatar')){
-
-            $fImage = $request->file('avatar');
-            $bientam = time().'_'.$fImage->getClientOriginalName();
-            $destinationPath = public_path('/upload');
-            $fImage->move($destinationPath,$bientam);
-            $user->hinhanh = $bientam;
-        }
-        else{
-            $user->hinhanh = $request->hinhcu;
-        }
-
-        $user->save();
-        return redirect('/info');
-    }
 
     public function status_order(Request $request, $id){
 
@@ -74,6 +83,6 @@ class UserController extends Controller
         if($request->cancel)
             $cancel->status=2;
         $cancel->save();
-        return redirect('/info');
+        return redirect('/sanpham-damua');
     }
 }

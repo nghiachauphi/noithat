@@ -33,7 +33,7 @@
                         <a href="/"><img src="images/home/logo.png" alt="" /></a>
                     </div>
                     <div class="btn-group pull-right">
-                        
+
                     </div>
                 </div>
                 <div class="col-sm-8">
@@ -52,7 +52,7 @@
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                                 <ul>
                                                     <li>
-                                                        <a class="dropdown-item" href="<?php echo e(url('/info')); ?>" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fal fa-sign-out"></i> Thông tin tài khoản</a>
+                                                        <a class="dropdown-item" href="<?php echo e(url('/info')); ?>"><i class="fal fa-sign-out"></i> Thông tin tài khoản</a>
                                                     </li>
                                                     <li>
                                                         <a class="dropdown-item" href="<?php echo e(url('/logout')); ?>"><i class="fal fa-sign-out"></i> Đăng xuất</a>

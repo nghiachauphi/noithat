@@ -66,7 +66,8 @@ Route::get('/admin/sanpham/xuat', 'SanPhamController@getXuat');
 
 // admin khach hang
 Route::get('/admin/khachhang', 'KhachHangController@getDanhSach')->name('khachhang');
-//Route::get('/admin/sanpham/them', 'KhachHangController@getThem');
+
+Route::post('/admin/khachhang/trangthai/{id}', 'KhachHangController@status');
 //Route::post('/admin/sanpham/them', 'KhachHangController@postThem');
 //Route::get('/admin/sanpham/sua/{id}', 'KhachHangController@getSua');
 //Route::post('/admin/sanpham/sua/{id}', 'KhachHangController@postSua');

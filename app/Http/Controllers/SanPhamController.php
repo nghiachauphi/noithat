@@ -152,7 +152,8 @@ class SanPhamController extends Controller
 	// Xuất ra Excel
 	public function getXuat()
 	{
-//        xlsx
+        ob_end_clean();
+    	ob_start();
 		return Excel::download(new SanPhamExport, 'sanpham'.date('Y-m-d-h-i-s').'.xlsx');
 	}
 

@@ -50,6 +50,7 @@
 									<th class="text-table">STT</th>
 									<th class="text-table">Thông tin khách hàng</th>
 									<th class="text-table">Thông tin đơn hàng</th>
+									<th class="text-table">Trạng thái</th>
 								</tr>
 								</thead>
 								<tbody>
@@ -121,7 +122,47 @@
 											</table>
 										</td>
 
+										<td>
+											<div class="form-group">
 
+												@foreach($order as $value)
+											@php
+												$a = $value->id;
+												$b = $value->status;
+											@endphp
+											@endforeach
+															<a style="color: black">@if( $b==0)
+																	Đợi xác nhận
+																	@elseif( $b==1)
+																		Đang giao hàng
+																		@elseif( $b==2)
+																			Đã Giao
+																			@endif</a>
+														
+
+													</select>
+													@error('status')
+														<span class="invalid-feedback" role="alert">{{ $message }}</span>
+													@enderror
+												</div>
+												
+												<hr>
+											
+											<form action="{{ url('/admin/khachhang/trangthai/'.$a) }}" method="post">
+
+												@csrf
+												<div class="form-group">
+													<select class="form-control" id="status" name="status">
+															<option value="{{0}}">Đợi xác nhận</option>
+															<option value="{{1}}">Đang giao hàng</option>
+															<option value="{{2}}">Đã Giao</option>
+													</select>
+													<input type="submit" class="btn btn-dark" value="Thay đổi trạng thái">
+												</div>
+												
+											</form>
+											
+										</td>
 									</tr>
 
 								@endforeach

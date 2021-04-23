@@ -41,21 +41,21 @@
                         <ul class="nav navbar-nav">
                             @auth()
                                 @if(auth()->user())
+
                                     @guest
-                                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><i class="fal fa-sign-in-alt"></i> Đăng nhập</a></li>
-                                        @if (Route::has('register'))
-                                            <li class="nav-item"><a class="nav-link" href="{{ route('register') }}"><i class="fal fa-user-plus"></i> Đăng ký</a></li>
-                                        @endif
+                                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}"><i class="fal fa-sign-in-alt"></i> Đăng nhập</li>
+                                         
+                            
                                     @else
                                         <li class="nav-item dropdown">
                                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fa fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span></a>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                                 <ul>
                                                     <li>
-                                                        <a class="dropdown-item" href="{{ url('/info') }}"><i class="fal fa-sign-out"></i> Thông tin tài khoản</a>
+                                                        <a class="dropdown-item" href="{{ url('/info') }}"><i class="bi bi-info-circle-fill"></i> Thông tin tài khoản</a>
                                                     </li>
                                                     <li>
-                                                        <a class="dropdown-item" href="{{ url('/logout') }}"><i class="fal fa-sign-out"></i> Đăng xuất</a>
+                                                        <a class="dropdown-item" href="{{ url('/logout') }}"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
                                                     </li>
                                                 </ul>
                                                 <form id="logout-form" action="{{ url('/info') }}" method="post" style="display: none;">@csrf</form>
@@ -66,6 +66,7 @@
                                 @endauth
 
                                 @else
+                                <li class="nav-item"><a class="nav-link" href="{{ route('register') }}"><i class="bi bi-box-arrow-down-left"></i> Đăng ký</li>
                                     <li><a href="{{route('login')}}"><i class="fa fa-lock"></i> Login</a></li>
 
                                 @endif

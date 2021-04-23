@@ -29,4 +29,19 @@ class KhachHangController extends Controller
 
         return view('admin.khachhang.danhsach', compact('nguoidung'));
     }
+
+    public function status(Request $request, $id)
+    {
+    	$status = Order::find($id);
+        // dd($status->id);
+       
+        if($request->status==0)
+            $status->status = $request->status;
+        if($request->status==1)
+            $status->status = $request->status;
+        if($request->status==2)
+            $status->status = $request->status;
+        $status->save();
+        return redirect('/admin/khachhang/');
+    }
 }

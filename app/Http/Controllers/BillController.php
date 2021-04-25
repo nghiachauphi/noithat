@@ -27,7 +27,6 @@ class BillController extends Controller
 
 	public function send(Request $request)
     {
-        
 		$userId = auth()->user()->id;
 		$carts = RegisProducts::where('nguoidung_id', $userId)->latest()->get();
         $total = RegisProducts::where('nguoidung_id', $userId)->sum('price');
@@ -69,6 +68,20 @@ class BillController extends Controller
 	            'order_id' => $order->id,
 	        ]);
 	  	}
+
+        foreach($carts as $item) {
+
+            $soluongmua = $item->soluong;
+            $sanpham = SanPham::find($item->sanpham_id);
+            if($soluongmua < $sanpham->soluong)
+            {
+                $sanpham->soluong = ($sanpham->soluong) - $soluongmua;
+                $sanpham->save();
+            }
+            else
+            return back()->with('error', 'Số lượng mua vượt quá số lượng trong kho.');
+        }
+
 	  		// dd($carts->price);
 	   	RegisProducts::where('nguoidung_id', $userId)->delete();
 		return redirect('/');

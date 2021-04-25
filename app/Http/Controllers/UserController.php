@@ -81,7 +81,7 @@ class UserController extends Controller
     public function cancelOrder(Request $request,$id){
         $cancel = Order::find($id);
         if($request->cancel)
-            $cancel->status=2;
+            $cancel->status=4;
         $cancel->save();
         return redirect('/sanpham-damua');
     }

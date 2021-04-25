@@ -6,14 +6,11 @@
 	<div class="">
 		<div class="card-header text-center"><h2>Khách hàng</h2></div>
 		<div>
-			<table class="table table-striped table-hover">
-				<thead class="bg bg-primary">
+			<table class="table">
+				<thead class="bg bg-primary table-striped">
 				<tr>
-					<th class="text-table">STT</th>
-					<th class="text-table">Thông tin khách hàng</th>
-					<th class="text-table">Trạng thái</th>
-
-					<th class="text-table">Xóa đơn</th>
+					<th scope="col" class="text-table">STT</th>
+					<th scope="col" class="text-table">Trạng thái</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -24,39 +21,62 @@
 					@endphp
 
 					<tr>
-						<td>{{ $loop->iteration }}</td>
-						<td>
-							<p>
-								Tên khách hàng: <b>{{$value->name}}</b>
-							</p>
-							<p>
-								Username: <b>{{$value->username}}</b>
-							</p>
-							<p>
-								Địa chỉ: <b>{{$value->address}}</b>
-							</p>
-							<p>
-								Email: <b>{{$value->email}}</b>
-							</p>
-							<p>
-								Điện thoại: <b>{{$value->phone}}</b>
-							</p>
-						</td>
+						<td>Khách hàng thứ {{ $loop->iteration }}</td>
+
 						<td>
 
-							<table class="table table-bordered table-sm">
-								<thead style="background-color: #1D6ADD">
-								<tr>
-									<th class="text-table">STT</th>
-									<th class="text-table">Thông tin khách hàng</th>
-									<th class="text-table">Thông tin đơn hàng</th>
-									<th class="text-table">Trạng thái</th>
-								</tr>
+							<table class="table table-hover">
+								<thead>
+								<div class="bg-khachhang">
+									<tr>
+										<td class="text-table">
+												Tên khách hàng:
+										</td>
+										<td>
+											<b>{{$value->name}}</b>
+										</td>
+										<td class="text-table">
+											Username:
+										</td>
+										<td>
+											<b>{{$value->username}}</b>
+										</td>
+									</tr>
+
+									<tr>
+										<td class="text-table">
+											Email:
+										</td>
+										<td>
+											<b>{{$value->email}}</b>
+										</td>
+										<td class="text-table">
+											Điện thoại:
+										</td>
+										<td>
+											<b>{{$value->phone}}</b>
+										</td>
+									</tr>
+
+									<tr>
+										<td class="text-table">
+											Địa chỉ:
+										</td>
+										<td>
+											<b>{{$value->address}}</b>
+										</td>
+									</tr>
+								</div>
+									<tr>
+										<th class="text-table">Thông tin giao hàng</th>
+										<th class="text-table">Thông tin đơn hàng</th>
+										<th class="text-table">Trạng thái</th>
+										<th class="text-table">Xóa đơn</th>
+									</tr>
 								</thead>
 								<tbody>
 								@foreach( $order as $value)
 									<tr>
-										<td>{{ $loop->iteration }}</td>
 										<td>
 											<p>
 												Tên người nhận: <b>{{$value->hovaten}}</b>
@@ -124,22 +144,13 @@
 
 										<td>
 											<div class="form-group">
-
-												@foreach($order as $value)
-											@php
-												$a = $value->id;
-												$b = $value->status;
-											@endphp
-											@endforeach
-															<a style="color: black">@if( $b==0)
-																	Đợi xác nhận
-																	@elseif( $b==1)
-																		Đang giao hàng
-																		@elseif( $b==2)
-																			Đã Giao
-																			@endif</a>
-														
-
+												<a style="color: black">@if( $value->status==0)
+														Đợi xác nhận
+													@elseif( $value->status==1)
+														Đang giao hàng
+													@elseif( $value->status==2)
+														Đã Giao
+													@endif</a>
 													</select>
 													@error('status')
 														<span class="invalid-feedback" role="alert">{{ $message }}</span>
@@ -148,7 +159,7 @@
 												
 												<hr>
 											
-											<form action="{{ url('/admin/khachhang/trangthai/'.$a) }}" method="post">
+											<form action="{{ url('/admin/khachhang/trangthai/'.$value->id) }}" method="post">
 
 												@csrf
 												<div class="form-group">
@@ -163,23 +174,21 @@
 											</form>
 											
 										</td>
+
+										<td class="all-center">
+											<form action="{{URL('info/'. $value->id)}}" method="post">
+												@csrf
+												<input type="hidden" name="cancel" value="Xóa đơn" class="btn btn-danger">
+												<input type="submit" value="Xóa đơn" class="btn btn-danger">
+											</form>
+										</td>
+
 									</tr>
 
 								@endforeach
 								</tbody>
 							</table>
 
-						</td>
-
-
-
-
-						<td class="text-center">
-							<form action="{{URL('info/'. $value->id)}}" method="post">
-								@csrf
-								<input type="hidden" name="cancel" value="Hủy đơn" class="btn btn-danger">
-								<input type="submit" value="Hủy đơn" class="btn btn-danger">
-							</form>
 						</td>
 					</tr>
 				@endforeach
@@ -214,4 +223,9 @@
 	  </div>
 	</div>
 </form>
+	<style>
+		.bg-khachhang{
+			background-color: #4f1915!important;
+		}
+	</style>
 @endsection

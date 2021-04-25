@@ -85,10 +85,12 @@
                 </td>
                 <td>
                     @if($value->status == 0)
-                        Đang giao
+                        Đợi xác nhận
                     @elseif($value->status == 1)
-                        Đã giao hàng
+                        Đang giao hàng
                     @elseif($value->status == 2)
+                        Đã giao
+                    @elseif($value->status == 4)
                         Đã hủy đơn
                     @endif
                 </td>

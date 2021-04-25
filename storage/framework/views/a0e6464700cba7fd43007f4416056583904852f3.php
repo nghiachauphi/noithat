@@ -41,21 +41,21 @@
                         <ul class="nav navbar-nav">
                             <?php if(auth()->guard()->check()): ?>
                                 <?php if(auth()->user()): ?>
+
                                     <?php if(auth()->guard()->guest()): ?>
-                                        <li class="nav-item"><a class="nav-link" href="<?php echo e(route('login')); ?>"><i class="fal fa-sign-in-alt"></i> Đăng nhập</a></li>
-                                        <?php if(Route::has('register')): ?>
-                                            <li class="nav-item"><a class="nav-link" href="<?php echo e(route('register')); ?>"><i class="fal fa-user-plus"></i> Đăng ký</a></li>
-                                        <?php endif; ?>
+                                        <li class="nav-item"><a class="nav-link" href="<?php echo e(route('login')); ?>"><i class="fal fa-sign-in-alt"></i> Đăng nhập</li>
+                                         
+                            
                                     <?php else: ?>
                                         <li class="nav-item dropdown">
                                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre><i class="fa fa-user"></i> <?php echo e(Auth::user()->name); ?> <span class="caret"></span></a>
                                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                                 <ul>
                                                     <li>
-                                                        <a class="dropdown-item" href="<?php echo e(url('/info')); ?>"><i class="fal fa-sign-out"></i> Thông tin tài khoản</a>
+                                                        <a class="dropdown-item" href="<?php echo e(url('/info')); ?>"><i class="bi bi-info-circle-fill"></i> Thông tin tài khoản</a>
                                                     </li>
                                                     <li>
-                                                        <a class="dropdown-item" href="<?php echo e(url('/logout')); ?>"><i class="fal fa-sign-out"></i> Đăng xuất</a>
+                                                        <a class="dropdown-item" href="<?php echo e(url('/logout')); ?>"><i class="bi bi-box-arrow-right"></i> Đăng xuất</a>
                                                     </li>
                                                 </ul>
                                                 <form id="logout-form" action="<?php echo e(url('/info')); ?>" method="post" style="display: none;"><?php echo csrf_field(); ?></form>
@@ -66,6 +66,7 @@
                                 <?php endif; ?>
 
                                 <?php else: ?>
+                                <li class="nav-item"><a class="nav-link" href="<?php echo e(route('register')); ?>"><i class="bi bi-box-arrow-down-left"></i> Đăng ký</li>
                                     <li><a href="<?php echo e(route('login')); ?>"><i class="fa fa-lock"></i> Login</a></li>
 
                                 <?php endif; ?>

@@ -2,7 +2,11 @@
 
 @section('content')
 
-
+	@if(Session::has('error'))
+		<div class="alert alert-success all-center">
+			{{Session::get('error')}}
+		</div>
+	@endif
 <div class="section pt-0">
 	<div class="container">
 		<div class="row">

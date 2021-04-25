@@ -34,6 +34,8 @@ Route::get('/admin/contact', 'ContactUsFormController@getDanhSach');
 // Giỏ hàng
 Route::get('/cart', 'RegisProductsController@list')->name('cart');
 Route::post('/cart', 'BillController@send')->name('send-cart');
+//Route::get('/cart/sua-giohang/{id}', 'RegisProductsController@getSua');
+Route::post('/cart/update/{id}', 'RegisProductsController@postSua');
 
 
 //Bill

@@ -91,10 +91,12 @@
                 </td>
                 <td>
                     <?php if($value->status == 0): ?>
-                        Đang giao
+                        Đợi xác nhận
                     <?php elseif($value->status == 1): ?>
-                        Đã giao hàng
+                        Đang giao hàng
                     <?php elseif($value->status == 2): ?>
+                        Đã giao
+                    <?php elseif($value->status == 4): ?>
                         Đã hủy đơn
                     <?php endif; ?>
                 </td>

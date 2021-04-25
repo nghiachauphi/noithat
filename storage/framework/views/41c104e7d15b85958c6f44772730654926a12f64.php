@@ -6,14 +6,11 @@
 	<div class="">
 		<div class="card-header text-center"><h2>Khách hàng</h2></div>
 		<div>
-			<table class="table table-striped table-hover">
-				<thead class="bg bg-primary">
+			<table class="table">
+				<thead class="bg bg-primary table-striped">
 				<tr>
-					<th class="text-table">STT</th>
-					<th class="text-table">Thông tin khách hàng</th>
-					<th class="text-table">Trạng thái</th>
-
-					<th class="text-table">Xóa đơn</th>
+					<th scope="col" class="text-table">STT</th>
+					<th scope="col" class="text-table">Trạng thái</th>
 				</tr>
 				</thead>
 				<tbody>
@@ -24,38 +21,62 @@
 					?>
 
 					<tr>
-						<td><?php echo e($loop->iteration); ?></td>
-						<td>
-							<p>
-								Tên khách hàng: <b><?php echo e($value->name); ?></b>
-							</p>
-							<p>
-								Username: <b><?php echo e($value->username); ?></b>
-							</p>
-							<p>
-								Địa chỉ: <b><?php echo e($value->address); ?></b>
-							</p>
-							<p>
-								Email: <b><?php echo e($value->email); ?></b>
-							</p>
-							<p>
-								Điện thoại: <b><?php echo e($value->phone); ?></b>
-							</p>
-						</td>
+						<td>Khách hàng thứ <?php echo e($loop->iteration); ?></td>
+
 						<td>
 
-							<table class="table table-bordered table-sm">
-								<thead style="background-color: #1D6ADD">
-								<tr>
-									<th class="text-table">STT</th>
-									<th class="text-table">Thông tin khách hàng</th>
-									<th class="text-table">Thông tin đơn hàng</th>
-								</tr>
+							<table class="table table-hover">
+								<thead>
+								<div class="bg-khachhang">
+									<tr>
+										<td class="text-table">
+												Tên khách hàng:
+										</td>
+										<td>
+											<b><?php echo e($value->name); ?></b>
+										</td>
+										<td class="text-table">
+											Username:
+										</td>
+										<td>
+											<b><?php echo e($value->username); ?></b>
+										</td>
+									</tr>
+
+									<tr>
+										<td class="text-table">
+											Email:
+										</td>
+										<td>
+											<b><?php echo e($value->email); ?></b>
+										</td>
+										<td class="text-table">
+											Điện thoại:
+										</td>
+										<td>
+											<b><?php echo e($value->phone); ?></b>
+										</td>
+									</tr>
+
+									<tr>
+										<td class="text-table">
+											Địa chỉ:
+										</td>
+										<td>
+											<b><?php echo e($value->address); ?></b>
+										</td>
+									</tr>
+								</div>
+									<tr>
+										<th class="text-table">Thông tin giao hàng</th>
+										<th class="text-table">Thông tin đơn hàng</th>
+										<th class="text-table">Trạng thái</th>
+										<th class="text-table">Xóa đơn</th>
+									</tr>
 								</thead>
 								<tbody>
 								<?php $__currentLoopData = $order; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 									<tr>
-										<td><?php echo e($loop->iteration); ?></td>
 										<td>
 											<p>
 												Tên người nhận: <b><?php echo e($value->hovaten); ?></b>
@@ -127,6 +148,53 @@
 											</table>
 										</td>
 
+										<td>
+											<div class="form-group">
+												<a style="color: black"><?php if( $value->status==0): ?>
+														Đợi xác nhận
+													<?php elseif( $value->status==1): ?>
+														Đang giao hàng
+													<?php elseif( $value->status==2): ?>
+														Đã Giao
+													<?php endif; ?></a>
+													</select>
+													<?php $__errorArgs = ['status'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+														<span class="invalid-feedback" role="alert"><?php echo e($message); ?></span>
+													<?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+												</div>
+												
+												<hr>
+											
+											<form action="<?php echo e(url('/admin/khachhang/trangthai/'.$value->id)); ?>" method="post">
+
+												<?php echo csrf_field(); ?>
+												<div class="form-group">
+													<select class="form-control" id="status" name="status">
+															<option value="<?php echo e(0); ?>">Đợi xác nhận</option>
+															<option value="<?php echo e(1); ?>">Đang giao hàng</option>
+															<option value="<?php echo e(2); ?>">Đã Giao</option>
+													</select>
+													<input type="submit" class="btn btn-dark" value="Thay đổi trạng thái">
+												</div>
+												
+											</form>
+											
+										</td>
+
+										<td class="all-center">
+											<form action="<?php echo e(URL('info/'. $value->id)); ?>" method="post">
+												<?php echo csrf_field(); ?>
+												<input type="hidden" name="cancel" value="Xóa đơn" class="btn btn-danger">
+												<input type="submit" value="Xóa đơn" class="btn btn-danger">
+											</form>
+										</td>
 
 									</tr>
 
@@ -134,17 +202,6 @@
 								</tbody>
 							</table>
 
-						</td>
-
-
-
-
-						<td class="text-center">
-							<form action="<?php echo e(URL('info/'. $value->id)); ?>" method="post">
-								<?php echo csrf_field(); ?>
-								<input type="hidden" name="cancel" value="Hủy đơn" class="btn btn-danger">
-								<input type="submit" value="Hủy đơn" class="btn btn-danger">
-							</form>
 						</td>
 					</tr>
 				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -179,5 +236,10 @@
 	  </div>
 	</div>
 </form>
+	<style>
+		.bg-khachhang{
+			background-color: #4f1915!important;
+		}
+	</style>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin.layouts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\Wamp\www\noithat\resources\views/admin/khachhang/danhsach.blade.php ENDPATH**/ ?>

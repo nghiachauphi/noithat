@@ -2,7 +2,12 @@
 
 <?php $__env->startSection('content'); ?>
 
+	<?php if(Session::has('error')): ?>
+		<div class="alert alert-success all-center">
+			<?php echo e(Session::get('error')); ?>
 
+		</div>
+	<?php endif; ?>
 <div class="section pt-0">
 	<div class="container">
 		<div class="row">
